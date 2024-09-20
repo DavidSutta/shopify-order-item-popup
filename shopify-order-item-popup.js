@@ -17,10 +17,10 @@
         const itemImageContainerDiv = document.querySelectorAll('div[class^="_ThumbnailContainer"]');
 
         itemImageContainerDiv.forEach(function(imgDiv) {
-            img = imgDiv.querySelector('img');
-            console.log(img.src);
+            const img = imgDiv.querySelector('img');
+
             imgDiv.addEventListener('mouseenter', function() {
-                // Get the URL of the image (you can adjust where the URL comes from)
+                // Get the URL of the image
                 const imageUrl = img.src; // Assuming the img element has the src with the image URL
 
                 // Create a popup to display the image
