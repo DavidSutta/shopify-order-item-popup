@@ -21,7 +21,14 @@
 
             imgDiv.addEventListener('mouseenter', function() {
                 // Get the URL of the image
-                const imageUrl = img.src; // Assuming the img element has the src with the image URL
+                let imageUrl = img.src; // Assuming the img element has the src with the image URL
+
+                // Find and double the resolution (e.g., 160x160 -> 320x320)
+                imageUrl = imageUrl.replace(/_(\d+)x(\d+)(\.\w+)/, function(match, width, height, extension) {
+                    const newWidth = parseInt(width) * 2;
+                    const newHeight = parseInt(height) * 2;
+                    return `_${newWidth}x${newHeight}${extension}`;
+                });
 
                 // Create a popup to display the image
                 const popup = document.createElement('div');
