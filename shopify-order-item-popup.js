@@ -17,7 +17,7 @@
         const itemImageContainerDiv = document.querySelectorAll('div[class^="_ThumbnailContainer"]');
 
         itemImageContainerDiv.forEach(function(imgDiv) {
-            const img = imgDiv.querySelector('img');
+            const img = imgDiv.querySelector('img'); // Ensure img is scoped correctly
 
             imgDiv.addEventListener('mouseenter', function() {
                 // Get the URL of the image
@@ -27,13 +27,16 @@
                 const popup = document.createElement('div');
                 popup.id = 'image-popup';
                 popup.style.position = 'absolute';
-                popup.style.border = '2px solid blue';
                 popup.style.backgroundColor = 'white';
                 popup.style.padding = '10px';
                 popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
                 popup.style.zIndex = '9999';
                 popup.style.top = `${imgDiv.getBoundingClientRect().bottom + window.scrollY}px`;
                 popup.style.left = `${imgDiv.getBoundingClientRect().left}px`;
+
+                // Set initial styles for fade-in effect
+                popup.style.opacity = '0';
+                popup.style.transition = 'opacity 0.3s ease-in-out'; // Transition for fade-in effect
 
                 // Create the image element for the popup
                 const popupImage = document.createElement('img');
@@ -46,6 +49,11 @@
 
                 // Add the popup to the document
                 document.body.appendChild(popup);
+
+                // Trigger the fade-in effect by setting opacity to 1
+                setTimeout(() => {
+                    popup.style.opacity = '1';
+                }, 0); // Using timeout to allow browser to apply initial styles first
             });
 
             imgDiv.addEventListener('mouseleave', function() {
