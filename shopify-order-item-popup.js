@@ -77,7 +77,7 @@
         popupImage.src = imageUrl;
         popupImage.style.maxWidth = `${maxWidth}px`;
         popupImage.style.maxHeight = `${maxHeight}px`;
-        
+
         popup.appendChild(popupImage);
         return popup;
     }
