@@ -28,7 +28,7 @@
         return imageUrl;
     }
 
-    function createCustomPopupWithImage(imageUrl, imagePopupId, maxWidth, maxHeight) {
+    function createCustomPopupWithImage(imageUrl, imagePopupId, boundingClientRect, maxWidth, maxHeight) {
         const popup = document.createElement('div');
         popup.id = imagePopupId;
         popup.style.position = 'absolute';
@@ -40,12 +40,9 @@
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        // Get the popup's intended position and size
-        const rect = imgDiv.getBoundingClientRect();
-
         // Calculate the default position
-        let top = rect.bottom + window.scrollY;
-        let left = rect.left;
+        let top = boundingClientRect.bottom + window.scrollY;
+        let left = boundingClientRect.left;
 
         // Check if the popup would go off the right edge of the viewport
         if (left + maxWidth > viewportWidth) {
@@ -54,7 +51,7 @@
 
         // Check if the popup would go off the bottom edge of the viewport
         if (top + maxHeight > viewportHeight + window.scrollY) {
-            top = rect.top + window.scrollY - maxHeight - 10; // Adjust to position above the element
+            top = boundingClientRect.top + window.scrollY - maxHeight - 10; // Adjust to position above the element
         }
 
         // Check if the popup would go off the left edge of the viewport
@@ -64,7 +61,7 @@
 
         // Check if the popup would go off the top edge of the viewport
         if (top < window.scrollY) {
-            top = rect.bottom + window.scrollY + 10; // Adjust to position below the element
+            top = boundingClientRect.bottom + window.scrollY + 10; // Adjust to position below the element
         }
 
         // Set the final position of the popup
@@ -101,7 +98,7 @@
                 imageUrl = getMultipliedResolutionImageUrl(imageUrl, 2);
 
                 // Create the popup element with the image in it
-                const popup = createCustomPopupWithImage(imageUrl, ID_FOR_CUSTOM_POPUP, 300, 300)
+                const popup = createCustomPopupWithImage(imageUrl, ID_FOR_CUSTOM_POPUP, imgDiv.getBoundingClientRect(), 300, 300);
 
                 // Add the popup to the document
                 document.body.appendChild(popup);
