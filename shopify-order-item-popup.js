@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shopify Orders Image Popup on Hover
 // @namespace    https://github.com/DavidSutta/shopify-order-item-popup/
-// @version      1.0
+// @version      1.1
 // @description  Displays a popup with an enlarged image when hovering over an item image in the orders popup
 // @author       David Sutta
 // @match        https://admin.shopify.com/store/*/orders*
