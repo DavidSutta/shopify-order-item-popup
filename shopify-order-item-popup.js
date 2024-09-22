@@ -38,8 +38,42 @@
                 popup.style.padding = '10px';
                 popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
                 popup.style.zIndex = '9999';
-                popup.style.top = `${imgDiv.getBoundingClientRect().bottom + window.scrollY}px`;
-                popup.style.left = `${imgDiv.getBoundingClientRect().left}px`;
+                // Get the dimensions of the viewport
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                // Get the popup's intended position and size
+                const rect = imgDiv.getBoundingClientRect();
+                const popupWidth = 300; // Adjust based on your maxWidth setting
+                const popupHeight = 300; // Adjust based on your maxHeight setting
+
+                // Calculate the default position
+                let top = rect.bottom + window.scrollY;
+                let left = rect.left;
+
+                // Check if the popup would go off the right edge of the viewport
+                if (left + popupWidth > viewportWidth) {
+                    left = viewportWidth - popupWidth - 10; // Adjust to fit within the viewport with a small margin
+                }
+
+                // Check if the popup would go off the bottom edge of the viewport
+                if (top + popupHeight > viewportHeight + window.scrollY) {
+                    top = rect.top + window.scrollY - popupHeight - 10; // Adjust to position above the element
+                }
+
+                // Check if the popup would go off the left edge of the viewport
+                if (left < 0) {
+                    left = 10; // Adjust to prevent the popup from going off the left edge
+                }
+
+                // Check if the popup would go off the top edge of the viewport
+                if (top < window.scrollY) {
+                    top = rect.bottom + window.scrollY + 10; // Adjust to position below the element
+                }
+
+                // Set the final position of the popup
+                popup.style.top = `${top}px`;
+                popup.style.left = `${left}px`;
 
                 // Set initial styles for fade-in effect
                 popup.style.opacity = '0';
