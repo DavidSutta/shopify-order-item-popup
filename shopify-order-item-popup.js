@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Shopify Orders Image Popup on Hover
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      1.0
 // @description  Displays a popup with an enlarged image when hovering over an item image in the orders popup
 // @author       David Sutta
-// @match        https://your-shopify-admin-url/orders*
+// @match        https://admin.shopify.com/store/*/orders*
 // @grant        none
 // ==/UserScript==
 
